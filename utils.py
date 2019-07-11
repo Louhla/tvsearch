@@ -8,10 +8,14 @@ def getVersion():
     return "0.0.1"
 
 def getShows():
-    shows=[]
+    shows = []
     for show in AVAILABE_SHOWS:
         shows.append(json.loads(getJsonFromFile(show)))
     return shows
+
+def getSpecificShow(show):
+    specificShow = json.loads(getJsonFromFile(show))
+    return specificShow
 
 def getJsonFromFile(showName):
     try:

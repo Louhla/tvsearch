@@ -28,6 +28,12 @@ def browse():
     sectionData = utils.getShows()
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
 
+@route('/ajax/show/<filename>')
+def show(filename):
+    sectionTemplate = "./templates/show.tpl"
+    sectionData = utils.getSpecificShow(filename)
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
+
 @route('/search')
 def index():
     sectionTemplate = "./templates/search.tpl"
