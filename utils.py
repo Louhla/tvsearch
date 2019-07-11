@@ -7,6 +7,12 @@ AVAILABE_SHOWS = ["7", "66", "73", "82", "112", "143", "175", "216", "1371", "18
 def getVersion():
     return "0.0.1"
 
+def getShows():
+    shows=[]
+    for show in AVAILABE_SHOWS:
+        shows.append(json.loads(getJsonFromFile(show)))
+    return shows
+
 def getJsonFromFile(showName):
     try:
         return template("{folder}/{filename}.json".format(folder=JSON_FOLDER, filename=showName))
