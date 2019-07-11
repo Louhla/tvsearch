@@ -34,6 +34,12 @@ def show(filename):
     sectionData = utils.getSpecificShow(filename)
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
 
+@route('/ajax/episode/<episodename>')
+def showepisode(episodename):
+    sectionTemplate = "./templates/episode.tpl"
+    sectionData = utils.getSpecificEpisode(episodename)
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
+
 @route('/search')
 def index():
     sectionTemplate = "./templates/search.tpl"

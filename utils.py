@@ -17,6 +17,11 @@ def getSpecificShow(show):
     specificShow = json.loads(getJsonFromFile(show))
     return specificShow
 
+def getSpecificEpisode(episode):
+    episode = json.loads(getJsonFromFile(episode))
+    specififepisode = episode._embedded.episodes.id
+    return specififepisode
+
 def getJsonFromFile(showName):
     try:
         return template("{folder}/{filename}.json".format(folder=JSON_FOLDER, filename=showName))
