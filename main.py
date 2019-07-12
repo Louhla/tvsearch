@@ -3,8 +3,6 @@ from bottle import (get, post, redirect, request, route, run, static_file,
                     template)
 import utils
 
-# Static Routes
-
 
 @get("/js/<filepath:re:.*\.js>")
 def js(filepath):
@@ -51,8 +49,15 @@ def showepisode(showid, episodeid):
 @route('/search')
 def index():
     sectionTemplate = "./templates/search.tpl"
-
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={})
+
+
+@route('/search', method="POST")
+def search():
+    my_query = request.POST.get("q")
+    sectionTemplate = "./templates/search_result.tpl"
+    sectionData = utils.get_search(my_query)
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={}, results=sectionData, query=my_query)
 
 
 if __name__ == "__main__":

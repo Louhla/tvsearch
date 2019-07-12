@@ -30,6 +30,25 @@ def getSpecificEpisode(showid, episodeid):
             return item
 
 
+def get_search(my_query):
+    search_result = []
+    for showid in AVAILABE_SHOWS:
+        specific_show = json.loads(getJsonFromFile(showid))
+        list_episodes = specific_show["_embedded"]["episodes"]
+        for item in list_episodes:
+            if item["summary"] is not None and my_query in str(item["summary"]):
+                result = {
+                    'text': "%s : %s" % (specific_show["name"], item["name"]),
+                    'showid': specific_show['id'],
+                    'episodeid': item['id'],
+                }
+                search_result.append(result)
+
+    return search_result
+
+
+
+
 def getJsonFromFile(showid):
     try:
         return template("{folder}/{filename}.json".format(folder=JSON_FOLDER, filename=showid))
