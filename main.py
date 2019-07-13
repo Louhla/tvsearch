@@ -1,5 +1,5 @@
 import os
-from bottle import (get, post, redirect, request, route, run, static_file,
+from bottle import (get, post, redirect, request, route, run, static_file, error,
                     template)
 import utils
 
@@ -59,6 +59,10 @@ def search():
     sectionData = utils.get_search(my_query)
     return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData={}, results=sectionData, query=my_query)
 
+@error(404)
+def error(error):
+    error_template = "./templates/404.tpl"
+    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=error_template, sectionData={})
 
 if __name__ == "__main__":
     run(host='localhost', port=os.environ.get('PORT', 5000))
