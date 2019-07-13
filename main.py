@@ -34,16 +34,14 @@ def browse():
 
 @route('/ajax/show/<filename>')
 def show(filename):
-    sectionTemplate = "./templates/show.tpl"
-    sectionData = utils.getSpecificShow(filename)
-    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
+    section_data = utils.getSpecificShow(filename)
+    return template("./templates/show.tpl", result=section_data)
 
 
 @route('/ajax/show/<showid>/episode/<episodeid>')
 def showepisode(showid, episodeid):
-    sectionTemplate = "./templates/episode.tpl"
-    sectionData = utils.getSpecificEpisode(showid, episodeid)
-    return template("./pages/index.html", version=utils.getVersion(), sectionTemplate=sectionTemplate, sectionData=sectionData)
+    section_data2 = utils.getSpecificEpisode(showid, episodeid)
+    return template("./templates/episode.tpl", result=section_data2)
 
 
 @route('/search')
