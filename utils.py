@@ -43,7 +43,13 @@ def get_search(my_query):
                     'episodeid': item['id'],
                 }
                 search_result.append(result)
-
+            elif my_query in item['name']:
+                result = {
+                    'text': "%s : %s" % (specific_show["name"], item["name"]),
+                    'showid': specific_show['id'],
+                    'episodeid': item['id'],
+                }
+                search_result.append(result)
     return search_result
 
 
